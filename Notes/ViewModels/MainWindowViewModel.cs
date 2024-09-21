@@ -7,5 +7,7 @@ namespace Notes.ViewModels
     public class MainWindowViewModel : BindableBase
     {
         public TextWrapper TextWrapper { get; set; } = new ();
+
+        public ScrapContainer ScrapContainer { get; private set; } = new();
     }
 }
