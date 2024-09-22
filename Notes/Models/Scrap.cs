@@ -10,6 +10,8 @@ namespace Notes.Models
         private string description;
         private bool isMarked;
         private ScrapKind kind;
+        private string groupName;
+        private DateTime creationDateTime;
 
         public string Title { get => title; set => SetProperty(ref title, value); }
 
@@ -32,5 +34,13 @@ namespace Notes.Models
         }
 
         public bool IsMarked { get => isMarked; set => SetProperty(ref isMarked, value); }
+
+        public string GroupName { get => groupName; set => SetProperty(ref groupName, value); }
+
+        public DateTime CreationDateTime
+        {
+            get => creationDateTime;
+            set => SetProperty(ref creationDateTime, value);
+        }
     }
 }

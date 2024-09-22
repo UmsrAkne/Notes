@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Notes.Models
 {
@@ -16,6 +17,8 @@ namespace Notes.Models
                     Description = $"testDescription{i + 1}",
                     IsMarked = false,
                     Kind = ScrapKind.Text,
+                    GroupName = string.Empty,
+                    CreationDateTime = DateTime.Now,
                 });
             }
 
