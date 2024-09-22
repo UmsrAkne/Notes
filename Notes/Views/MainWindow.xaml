@@ -33,6 +33,7 @@
         <!--  メインListBox  -->
         <ListBox
             Grid.Row="1"
+            AlternationCount="2"
             ItemsSource="{Binding ScrapContainer.Scraps}"
             SelectedIndex="{Binding ScrapContainer.CursorManager.SelectedIndex}"
             SelectedItem="{Binding ScrapContainer.CursorManager.SelectedItem}">
@@ -54,6 +55,10 @@
                                 </Border>
                                 <ControlTemplate.Triggers>
 
+                                    <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                                        <Setter TargetName="Bd" Property="Background" Value="WhiteSmoke" />
+                                    </Trigger>
+
                                     <!--  マウスオーバー時  -->
                                     <Trigger Property="IsMouseOver" Value="True">
                                         <Setter TargetName="Bd" Property="Background" Value="LightGray" />
@@ -63,6 +68,7 @@
                                     <Trigger Property="IsSelected" Value="True">
                                         <Setter TargetName="Bd" Property="Background" Value="LightGreen" />
                                     </Trigger>
+
                                 </ControlTemplate.Triggers>
                             </ControlTemplate>
                         </Setter.Value>
