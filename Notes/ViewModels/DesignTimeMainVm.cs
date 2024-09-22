@@ -9,17 +9,10 @@ namespace Notes.ViewModels
         public DesignTimeMainVm()
         {
             ScrapContainer = new ScrapContainer();
-
-            for (var i = 0; i < 30; i++)
+            var list = new DummyScrapService().GetScraps();
+            foreach (var scrap in list)
             {
-                ScrapContainer.Scraps.Add(new Scrap
-                {
-                    IndentCount = 0,
-                    Title = $"Title{i + 1}",
-                    Description = $"Description{i + 1}",
-                    IsMarked = false,
-                    Kind = ScrapKind.Text,
-                });
+                ScrapContainer.Scraps.Add(scrap);
             }
         }
 
