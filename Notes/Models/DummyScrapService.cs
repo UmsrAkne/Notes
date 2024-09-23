@@ -24,5 +24,10 @@ namespace Notes.Models
 
             return l;
         }
+
+        public IEnumerable<Scrap> AddScraps()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
