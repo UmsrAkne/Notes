@@ -36,7 +36,9 @@ namespace Notes.Models
             var scr = new Scrap() { Title = str, };
             Scraps.Add(scr);
 
-            var f = new FileInfoWrapper(new FileSystem(), new FileInfo($"{ScrapService.CurrentDirectory}\\0000-{scr.Title}.json"));
+            var id = ScrapService.GetMaxId() + 1;
+
+            var f = new FileInfoWrapper(new FileSystem(), new FileInfo($"{ScrapService.CurrentDirectory}\\{id:D4}-{scr.Title}.json"));
             ScrapService.AddScrap(scr, f);
         }
     }

@@ -10,5 +10,7 @@ namespace Notes.Models
         public IEnumerable<Scrap> GetScraps();
 
         public void AddScrap(Scrap scrap, IFileInfo fileInfo);
+
+        public int GetMaxId();
     }
 }

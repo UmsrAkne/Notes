@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.IO.Abstractions;
+using System.Linq;
 using System.Text.Json;
 
 namespace Notes.Models
@@ -45,6 +47,24 @@ namespace Notes.Models
             var jsonString = JsonSerializer.Serialize(scrap, new JsonSerializerOptions { WriteIndented = true, });
             using var sr = fileInfo.CreateText();
             sr.Write(jsonString);
+        }
+
+        public int GetMaxId()
+        {
+            var maxIdObject = RootDirectoryInfo.GetFiles("*.json", SearchOption.AllDirectories)
+                .OrderByDescending(f => f.Name)
+                .FirstOrDefault();
+
+            if (maxIdObject != null)
+            {
+                var id = maxIdObject.Name[..4];
+                if (int.TryParse(id, out var maxId))
+                {
+                    return maxId;
+                }
+            }
+
+            return 0;
         }
     }
 }

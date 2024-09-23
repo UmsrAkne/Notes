@@ -32,5 +32,10 @@ namespace Notes.Models
         {
             throw new NotImplementedException();
         }
+
+        public int GetMaxId()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
