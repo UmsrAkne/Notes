@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.Abstractions;
 
 namespace Notes.Models
 {
     public class DummyScrapService : IScrapService
     {
+        public IDirectoryInfo CurrentDirectory { get; set; }
+
         public IEnumerable<Scrap> GetScraps()
         {
             var l = new List<Scrap>();
@@ -23,6 +26,16 @@ namespace Notes.Models
             }
 
             return l;
+        }
+
+        public void AddScrap(Scrap scrap, IFileInfo fileInfo)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetMaxId()
+        {
+            throw new NotImplementedException();
         }
     }
 }

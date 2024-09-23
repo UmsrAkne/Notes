@@ -17,6 +17,13 @@
     AllowDrop="True"
     mc:Ignorable="d">
 
+    <Window.InputBindings>
+        <KeyBinding
+            Key="N"
+            Command="{Binding ScrapContainer.AddScrapCommand}"
+            Modifiers="Control" />
+    </Window.InputBindings>
+
     <i:Interaction.Behaviors>
         <behaviors:DragAndDropBehavior />
     </i:Interaction.Behaviors>
