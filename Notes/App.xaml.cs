@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.IO.Abstractions;
+using System.Windows;
 using Notes.Models;
 using Notes.Views;
 using Prism.Ioc;
@@ -17,7 +19,10 @@ namespace Notes
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterSingleton<IScrapService, ScrapFilesService>();
+            const string folderName = "ScrapFiles";
+            containerRegistry.RegisterInstance<IScrapService>(new ScrapFilesService(
+                new DirectoryInfoWrapper(new FileSystem(), new DirectoryInfo(folderName)),
+                new FileInfoWrapper(new FileSystem(), new FileInfo($"{folderName}\\.groupInfo"))));
         }
     }
 }

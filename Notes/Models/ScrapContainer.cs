@@ -1,4 +1,7 @@
 ﻿using System.Collections.ObjectModel;
+using System.IO;
+using System.IO.Abstractions;
+using Prism.Commands;
 
 namespace Notes.Models
 {
@@ -18,6 +21,11 @@ namespace Notes.Models
 
         public IScrapService ScrapService { get; set; }
 
+        public DelegateCommand AddScrapCommand => new DelegateCommand(() =>
+        {
+            Add("テストスクラップ");
+        });
+
         /// <summary>
         /// 入力された文字から Scrap オブジェクトを生成して、 Scraps に追加します。
         /// </summary>
@@ -28,7 +36,8 @@ namespace Notes.Models
             var scr = new Scrap() { Title = str, };
             Scraps.Add(scr);
 
-            ScrapService.AddScrap(scr);
+            var f = new FileInfoWrapper(new FileSystem(), new FileInfo($"{ScrapService.CurrentDirectory}\\0000-{scr.Title}.json"));
+            ScrapService.AddScrap(scr, f);
         }
     }
 }
