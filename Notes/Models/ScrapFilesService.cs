@@ -9,7 +9,7 @@ namespace Notes.Models
             throw new System.NotImplementedException();
         }
 
-        public IEnumerable<Scrap> AddScraps()
+        public void AddScrap(Scrap scrap)
         {
             throw new System.NotImplementedException();
         }

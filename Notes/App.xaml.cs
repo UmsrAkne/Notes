@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Notes.Models;
 using Notes.Views;
 using Prism.Ioc;
 
@@ -16,6 +17,7 @@ namespace Notes
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterSingleton<IScrapService, ScrapFilesService>();
         }
     }
 }

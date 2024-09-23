@@ -7,9 +7,10 @@ namespace Notes.ViewModels
     // ReSharper disable once ClassNeverInstantiated.Global
     public class MainWindowViewModel : BindableBase
     {
-        public MainWindowViewModel()
+        public MainWindowViewModel(IScrapService scrapService)
         {
             SetDummies();
+            ScrapContainer.ScrapService = scrapService;
         }
 
         public TextWrapper TextWrapper { get; set; } = new ();

@@ -25,7 +25,7 @@ namespace Notes.Models
             return l;
         }
 
-        public IEnumerable<Scrap> AddScraps()
+        public void AddScrap(Scrap scrap)
         {
             throw new NotImplementedException();
         }

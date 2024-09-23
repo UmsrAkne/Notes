@@ -16,6 +16,8 @@ namespace Notes.Models
 
         public CursorManager CursorManager { get; set; }
 
+        public IScrapService ScrapService { get; set; }
+
         /// <summary>
         /// 入力された文字から Scrap オブジェクトを生成して、 Scraps に追加します。
         /// </summary>
@@ -23,7 +25,10 @@ namespace Notes.Models
         public void Add(string str)
         {
             // Todo : まだ完全に実装していない。
-            Scraps.Add(new Scrap() { Title = str, });
+            var scr = new Scrap() { Title = str, };
+            Scraps.Add(scr);
+
+            ScrapService.AddScrap(scr);
         }
     }
 }

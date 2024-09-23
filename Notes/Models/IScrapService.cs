@@ -6,6 +6,6 @@ namespace Notes.Models
     {
         public IEnumerable<Scrap> GetScraps();
 
-        public IEnumerable<Scrap> AddScraps();
+        public void AddScrap(Scrap scrap);
     }
 }
