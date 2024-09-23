@@ -8,7 +8,6 @@ namespace Notes.Models
 {
     public class ScrapFilesService : IScrapService
     {
-
         /// <summary>
         /// このクラスのインスタンスを生成します。生成時、すべてのファイルを格納するためのルートディレクトリと、ルートディレクトリの情報を記録するテキストファイルを一緒に生成します。
         /// </summary>
@@ -33,9 +32,9 @@ namespace Notes.Models
             sr.Write("Folder Information");
         }
 
-        private IDirectoryInfo RootDirectoryInfo { get; set; }
-
         public IDirectoryInfo CurrentDirectory { get; set; }
+
+        private IDirectoryInfo RootDirectoryInfo { get; set; }
 
         public IEnumerable<Scrap> GetScraps()
         {
