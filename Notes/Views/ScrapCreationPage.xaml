@@ -42,8 +42,12 @@
             Grid.Row="1"
             HorizontalAlignment="Right"
             Orientation="Horizontal">
-            <Button Padding="10,0" Content="Create Scrap" />
+            <Button
+                Padding="10,0"
+                Command="{Binding AddScrapCommand}"
+                Content="Create Scrap" />
             <Border Margin="5,0" />
+
             <Button
                 Padding="10,0"
                 HorizontalAlignment="Right"

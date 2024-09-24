@@ -51,5 +51,14 @@ namespace Notes.Models
             var f = new FileInfoWrapper(new FileSystem(), new FileInfo($"{ScrapService.CurrentDirectory}\\{scr.Id:D4}.json"));
             ScrapService.AddScrap(scr, f);
         }
+
+        public void Add(Scrap scrap)
+        {
+            // Todo : まだ完全に実装していない。
+            scrap.Id = ScrapService.GetMaxId() + 1;
+            Scraps.Add(scrap);
+            var f = new FileInfoWrapper(new FileSystem(), new FileInfo($"{ScrapService.CurrentDirectory}\\{scrap.Id:D4}.json"));
+            ScrapService.AddScrap(scrap, f);
+        }
     }
 }

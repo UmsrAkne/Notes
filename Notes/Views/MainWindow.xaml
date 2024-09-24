@@ -20,7 +20,7 @@
     <Window.InputBindings>
         <KeyBinding
             Key="N"
-            Command="{Binding ScrapContainer.AddScrapCommand}"
+            Command="{Binding CreateScrapCommand}"
             Modifiers="Control" />
     </Window.InputBindings>
 
