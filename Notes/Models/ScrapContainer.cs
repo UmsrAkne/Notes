@@ -1,12 +1,17 @@
 ﻿using System.Collections.ObjectModel;
 using System.IO;
 using System.IO.Abstractions;
+using System.Linq;
 using Prism.Commands;
+using Prism.Mvvm;
 
 namespace Notes.Models
 {
-    public class ScrapContainer
+    public class ScrapContainer : BindableBase
     {
+        private IScrapService scrapService;
+        private ObservableCollection<Scrap> scraps = new ();
+
         public ScrapContainer()
         {
             CursorManager = new CursorManager
@@ -15,11 +20,23 @@ namespace Notes.Models
             };
         }
 
-        public ObservableCollection<Scrap> Scraps { get; private set; } = new ();
+        public ObservableCollection<Scrap> Scraps
+        {
+            get => scraps;
+            private set => SetProperty(ref scraps, value);
+        }
 
         public CursorManager CursorManager { get; set; }
 
-        public IScrapService ScrapService { get; set; }
+        public IScrapService ScrapService
+        {
+            get => scrapService;
+            set
+            {
+                Scraps = new ObservableCollection<Scrap>(Scraps.Concat(value.GetScraps()));
+                scrapService = value;
+            }
+        }
 
         public DelegateCommand AddScrapCommand => new DelegateCommand(() =>
         {
