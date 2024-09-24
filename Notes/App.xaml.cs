@@ -25,7 +25,7 @@ namespace Notes
                 new DirectoryInfoWrapper(new FileSystem(), new DirectoryInfo(folderName)),
                 new FileInfoWrapper(new FileSystem(), new FileInfo($"{folderName}\\.groupInfo"))));
 
-            containerRegistry.RegisterInstance<ScrapContainer>(new ScrapContainer());
+            containerRegistry.RegisterInstance(new ScrapContainer());
             containerRegistry.RegisterDialog<ScrapCreationPage, ScrapCreationPageViewModel>();
         }
     }

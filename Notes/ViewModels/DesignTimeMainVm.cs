@@ -19,7 +19,7 @@ namespace Notes.ViewModels
 
         public TextWrapper TextWrapper { get; set; } = new ();
 
-        public DelegateCommand CreateScrapCommand { get; }
+        public DelegateCommand CreateScrapCommand { get; } = new (() => { });
 
         public ScrapContainer ScrapContainer { get; set; }
     }
