@@ -10,7 +10,6 @@ namespace Notes.Models
     public class ScrapContainer : BindableBase
     {
         private IScrapService scrapService;
-        private ObservableCollection<Scrap> scraps = new ();
 
         public ScrapContainer()
         {
@@ -20,11 +19,7 @@ namespace Notes.Models
             };
         }
 
-        public ObservableCollection<Scrap> Scraps
-        {
-            get => scraps;
-            private set => SetProperty(ref scraps, value);
-        }
+        public ObservableCollection<Scrap> Scraps { get; set; } = new ();
 
         public CursorManager CursorManager { get; set; }
 
@@ -33,7 +28,7 @@ namespace Notes.Models
             get => scrapService;
             set
             {
-                Scraps = new ObservableCollection<Scrap>(Scraps.Concat(value.GetScraps()));
+                Scraps.AddRange(value.GetScraps());
                 scrapService = value;
             }
         }
