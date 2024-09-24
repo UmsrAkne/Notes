@@ -1,4 +1,5 @@
 ﻿using Notes.Models;
+using Prism.Commands;
 using Prism.Mvvm;
 
 namespace Notes.ViewModels
@@ -17,6 +18,8 @@ namespace Notes.ViewModels
         }
 
         public TextWrapper TextWrapper { get; set; } = new ();
+
+        public DelegateCommand CreateScrapCommand { get; } = new (() => { });
 
         public ScrapContainer ScrapContainer { get; set; }
     }

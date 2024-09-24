@@ -38,7 +38,13 @@ namespace Notes.Models
 
         public IEnumerable<Scrap> GetScraps()
         {
-            throw new System.NotImplementedException();
+            return CurrentDirectory.GetFiles("*.json")
+                .OrderBy(f => f.Name)
+                .Select(f =>
+                {
+                    using var reader = f.OpenText();
+                    return JsonSerializer.Deserialize<Scrap>(reader.ReadToEnd());
+                });
         }
 
         public void AddScrap(Scrap scrap, IFileInfo fileInfo)

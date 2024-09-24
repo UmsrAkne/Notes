@@ -1,0 +1,59 @@
+﻿<Page
+    x:Class="Notes.Views.ScrapCreationPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:Notes.ViewModels"
+    Title="ScrapCreationPage"
+    Width="600"
+    d:DataContext="{d:DesignInstance viewModels:ScrapCreationPageViewModel}"
+    mc:Ignorable="d">
+    <Grid Margin="5" FocusManager.FocusedElement="{Binding ElementName=TextBox}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+
+            <DockPanel>
+                <TextBlock Text="Title :" />
+                <Border Margin="2,0" />
+                <TextBox x:Name="TextBox" Text="{Binding Scrap.Title}" />
+            </DockPanel>
+
+            <DockPanel Margin="0,10">
+                <TextBlock Text="Description :" />
+                <Border Margin="2,0" />
+                <TextBox Text="{Binding Scrap.Description}" />
+            </DockPanel>
+
+            <DockPanel>
+                <TextBlock Text="Content :" />
+                <Border Margin="2,0" />
+                <TextBox Text="{Binding Scrap.Text}" />
+            </DockPanel>
+
+            <Border Margin="0,5" />
+        </StackPanel>
+
+        <StackPanel
+            Grid.Row="1"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+            <Button
+                Padding="10,0"
+                Command="{Binding AddScrapCommand}"
+                Content="Create Scrap" />
+            <Border Margin="5,0" />
+
+            <Button
+                Padding="10,0"
+                HorizontalAlignment="Right"
+                Command="{Binding CloseCommand}"
+                Content="Close" />
+
+        </StackPanel>
+    </Grid>
+</Page>
