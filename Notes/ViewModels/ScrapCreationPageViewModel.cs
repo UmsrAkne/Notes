@@ -1,4 +1,5 @@
 ﻿using System;
+using Notes.Models;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Services.Dialogs;
@@ -11,6 +12,8 @@ namespace Notes.ViewModels
         public event Action<IDialogResult> RequestClose;
 
         public string Title => string.Empty;
+
+        public Scrap Scrap { get; set; } = new ();
 
         public DelegateCommand CloseCommand => new DelegateCommand(() =>
         {
