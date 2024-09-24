@@ -12,7 +12,7 @@ namespace Notes.Models
         private bool isMarked;
         private ScrapKind kind;
         private string groupName;
-        private DateTime creationDateTime;
+        private DateTime creationDateTime = DateTime.Now;
 
         public int Id { get => id; set => SetProperty(ref id, value); }
 
