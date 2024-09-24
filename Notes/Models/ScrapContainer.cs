@@ -50,12 +50,10 @@ namespace Notes.Models
         public void Add(string str)
         {
             // Todo : まだ完全に実装していない。
-            var scr = new Scrap() { Title = str, };
+            var scr = new Scrap() { Title = str, Id = ScrapService.GetMaxId() + 1, };
             Scraps.Add(scr);
 
-            var id = ScrapService.GetMaxId() + 1;
-
-            var f = new FileInfoWrapper(new FileSystem(), new FileInfo($"{ScrapService.CurrentDirectory}\\{id:D4}.json"));
+            var f = new FileInfoWrapper(new FileSystem(), new FileInfo($"{ScrapService.CurrentDirectory}\\{scr.Id:D4}.json"));
             ScrapService.AddScrap(scr, f);
         }
     }

@@ -5,6 +5,7 @@ namespace Notes.Models
 {
     public class Scrap : BindableBase
     {
+        private int id;
         private int indentCount;
         private string title;
         private string description;
@@ -12,6 +13,8 @@ namespace Notes.Models
         private ScrapKind kind;
         private string groupName;
         private DateTime creationDateTime;
+
+        public int Id { get => id; set => SetProperty(ref id, value); }
 
         public string Title { get => title; set => SetProperty(ref title, value); }
 
