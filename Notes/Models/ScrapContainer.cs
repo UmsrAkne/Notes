@@ -1,8 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.IO;
 using System.IO.Abstractions;
-using System.Linq;
-using Prism.Commands;
 using Prism.Mvvm;
 
 namespace Notes.Models
@@ -32,11 +30,6 @@ namespace Notes.Models
                 scrapService = value;
             }
         }
-
-        public DelegateCommand AddScrapCommand => new DelegateCommand(() =>
-        {
-            Add("テストスクラップ");
-        });
 
         /// <summary>
         /// 入力された文字から Scrap オブジェクトを生成して、 Scraps に追加します。
