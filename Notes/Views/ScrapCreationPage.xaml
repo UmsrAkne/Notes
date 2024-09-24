@@ -9,7 +9,7 @@
     Width="600"
     d:DataContext="{d:DesignInstance viewModels:ScrapCreationPageViewModel}"
     mc:Ignorable="d">
-    <Grid Margin="5">
+    <Grid Margin="5" FocusManager.FocusedElement="{Binding ElementName=TextBox}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -20,7 +20,7 @@
             <DockPanel>
                 <TextBlock Text="Title :" />
                 <Border Margin="2,0" />
-                <TextBox Text="{Binding Scrap.Title}" />
+                <TextBox x:Name="TextBox" Text="{Binding Scrap.Title}" />
             </DockPanel>
 
             <DockPanel Margin="0,10">
