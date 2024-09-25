@@ -93,15 +93,14 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0" Orientation="Horizontal">
-                            <TextBlock
-                                Margin="3,0"
-                                Foreground="DimGray"
-                                Text="{Binding LineNumber, Converter={StaticResource ZeroPaddingConverter}, ConverterParameter=4}" />
+                            <TextBlock Foreground="DimGray" Text="{Binding LineNumber, Converter={StaticResource ZeroPaddingConverter}, ConverterParameter=4}" />
                             <Border Width="0" Margin="3,0" />
-                            <Border Width="{Binding IndentCount, Converter={StaticResource IndentingConverter}}" />
                         </StackPanel>
 
-                        <TextBlock Grid.Column="1" Text="{Binding Title}" />
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="{Binding IndentCount, Converter={StaticResource IndentingConverter}}"
+                            Text="{Binding Title}" />
                         <TextBlock Grid.Column="2" Text="{Binding Description}" />
                     </Grid>
                 </DataTemplate>
