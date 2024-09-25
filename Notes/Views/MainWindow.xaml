@@ -57,7 +57,8 @@
                                     x:Name="Bd"
                                     Padding="1"
                                     Background="Transparent"
-                                    BorderThickness="1">
+                                    BorderThickness="1"
+                                    CornerRadius="3">
                                     <ContentPresenter />
                                 </Border>
                                 <ControlTemplate.Triggers>
