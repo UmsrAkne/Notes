@@ -6,6 +6,7 @@
     xmlns:prism="http://prismlibrary.com/">
     <Application.Resources>
         <converters:ZeroPaddingConverter x:Key="ZeroPaddingConverter" />
+        <converters:IndentingConverter x:Key="IndentingConverter" />
         <SolidColorBrush x:Key="WhiteSmoke" Color="WhiteSmoke" />
     </Application.Resources>
 </prism:PrismApplication>
