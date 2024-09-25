@@ -34,7 +34,7 @@ namespace Notes.Models
         [Conditional("RELEASE")]
         private void SetVersion()
         {
-            Version = "20240925" + "a";
+            Version = "20240926" + "a";
         }
 
         [Conditional("DEBUG")]

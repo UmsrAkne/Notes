@@ -57,7 +57,8 @@
                                     x:Name="Bd"
                                     Padding="1"
                                     Background="Transparent"
-                                    BorderThickness="1">
+                                    BorderThickness="1"
+                                    CornerRadius="3">
                                     <ContentPresenter />
                                 </Border>
                                 <ControlTemplate.Triggers>
@@ -85,15 +86,24 @@
             </ListBox.ItemContainerStyle>
             <ListBox.ItemTemplate>
                 <DataTemplate DataType="{x:Type models:Scrap}">
-                    <StackPanel Orientation="Horizontal">
-                        <Border Width="{Binding IndentCount, Converter={StaticResource IndentingConverter}}" />
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Orientation="Horizontal">
+                            <TextBlock Foreground="DimGray" Text="{Binding LineNumber, Converter={StaticResource ZeroPaddingConverter}, ConverterParameter=4}" />
+                            <Border Width="0" Margin="3,0" />
+                        </StackPanel>
+
                         <TextBlock
-                            Margin="3,0"
-                            Foreground="DimGray"
-                            Text="{Binding LineNumber, Converter={StaticResource ZeroPaddingConverter}, ConverterParameter=4}" />
-                        <Border Width="0" Margin="3,0" />
-                        <TextBlock Text="{Binding Title}" />
-                    </StackPanel>
+                            Grid.Column="1"
+                            Margin="{Binding IndentCount, Converter={StaticResource IndentingConverter}}"
+                            Text="{Binding Title}" />
+                        <TextBlock Grid.Column="2" Text="{Binding Description}" />
+                    </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
