@@ -14,6 +14,7 @@ namespace Notes.Models
         private string groupName;
         private DateTime creationDateTime = DateTime.Now;
         private string text;
+        private int lineNumber;
 
         public int Id { get => id; set => SetProperty(ref id, value); }
 
@@ -48,5 +49,7 @@ namespace Notes.Models
             get => creationDateTime;
             set => SetProperty(ref creationDateTime, value);
         }
+
+        public int LineNumber { get => lineNumber; set => SetProperty(ref lineNumber, value); }
     }
 }
