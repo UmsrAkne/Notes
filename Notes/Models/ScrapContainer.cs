@@ -27,6 +27,7 @@ namespace Notes.Models
             set
             {
                 Scraps.AddRange(value.GetScraps());
+                ReIndex();
                 scrapService = value;
             }
         }
@@ -52,6 +53,15 @@ namespace Notes.Models
             Scraps.Add(scrap);
             var f = new FileInfoWrapper(new FileSystem(), new FileInfo($"{ScrapService.CurrentDirectory}\\{scrap.Id:D4}.json"));
             ScrapService.AddScrap(scrap, f);
+        }
+
+        private void ReIndex()
+        {
+            var i = 1;
+            foreach (var s in Scraps)
+            {
+                s.LineNumber = i++;
+            }
         }
     }
 }

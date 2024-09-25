@@ -25,6 +25,11 @@ namespace Notes.Models
                 });
             }
 
+            l[1].IndentCount = 1;
+            l[2].IndentCount = 2;
+            l[3].IndentCount = 3;
+            l[4].IndentCount = 4;
+
             return l;
         }
 
