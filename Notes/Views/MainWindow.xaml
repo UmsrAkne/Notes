@@ -86,12 +86,13 @@
             <ListBox.ItemTemplate>
                 <DataTemplate DataType="{x:Type models:Scrap}">
                     <StackPanel Orientation="Horizontal">
-                        <Border Width="{Binding IndentCount, Converter={StaticResource IndentingConverter}}" />
                         <TextBlock
                             Margin="3,0"
                             Foreground="DimGray"
                             Text="{Binding LineNumber, Converter={StaticResource ZeroPaddingConverter}, ConverterParameter=4}" />
                         <Border Width="0" Margin="3,0" />
+
+                        <Border Width="{Binding IndentCount, Converter={StaticResource IndentingConverter}}" />
                         <TextBlock Text="{Binding Title}" />
                     </StackPanel>
                 </DataTemplate>
