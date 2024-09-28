@@ -28,7 +28,7 @@
         <behaviors:DragAndDropBehavior />
     </i:Interaction.Behaviors>
 
-    <Grid>
+    <Grid FocusManager.FocusedElement="{Binding ElementName=ListBox}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
@@ -39,6 +39,7 @@
 
         <!--  メインListBox  -->
         <ListBox
+            x:Name="ListBox"
             Grid.Row="1"
             AlternationCount="2"
             ItemsSource="{Binding ScrapContainer.Scraps}"
