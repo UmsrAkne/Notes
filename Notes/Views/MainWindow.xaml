@@ -48,6 +48,13 @@
                 <behaviors:ListBoxKeyDownBehavior />
             </i:Interaction.Behaviors>
 
+            <ListBox.InputBindings>
+                <KeyBinding
+                    Key="Return"
+                    Command="{Binding ScrapContainer.OpenScrapCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}, Path=SelectedItem}" />
+            </ListBox.InputBindings>
+
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="Template">

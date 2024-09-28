@@ -29,6 +29,7 @@ namespace Notes.Models
             l[2].IndentCount = 2;
             l[3].IndentCount = 3;
             l[4].IndentCount = 4;
+            l[5].Text = "testText";
 
             return l;
         }
