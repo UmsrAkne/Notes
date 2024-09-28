@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.IO.Abstractions;
+using System.Text.Json;
 using Prism.Commands;
 using Prism.Mvvm;
 
@@ -59,6 +60,24 @@ namespace Notes.Models
             Process.Start(new ProcessStartInfo
             {
                 FileName = param.Text,
+                UseShellExecute = true,
+            });
+        });
+
+        public DelegateCommand<Scrap> GetScrapInfoCommand => new DelegateCommand<Scrap>((param) =>
+        {
+            if (param == null)
+            {
+                return;
+            }
+
+            var content = JsonSerializer.Serialize(param, new JsonSerializerOptions { WriteIndented = true, });
+            var tempFilePath = Path.ChangeExtension(Path.GetTempFileName(), "txt");
+            File.WriteAllText(tempFilePath, content);
+
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = tempFilePath,
                 UseShellExecute = true,
             });
         });

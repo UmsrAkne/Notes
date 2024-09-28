@@ -53,6 +53,12 @@
                     Key="Return"
                     Command="{Binding ScrapContainer.OpenScrapCommand}"
                     CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}, Path=SelectedItem}" />
+
+                <KeyBinding
+                    Key="I"
+                    Command="{Binding ScrapContainer.GetScrapInfoCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}, Path=SelectedItem}"
+                    Modifiers="Control" />
             </ListBox.InputBindings>
 
             <ListBox.ItemContainerStyle>
