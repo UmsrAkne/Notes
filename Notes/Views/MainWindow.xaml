@@ -28,7 +28,7 @@
         <behaviors:DragAndDropBehavior />
     </i:Interaction.Behaviors>
 
-    <Grid>
+    <Grid FocusManager.FocusedElement="{Binding ElementName=ListBox}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
@@ -39,6 +39,7 @@
 
         <!--  メインListBox  -->
         <ListBox
+            x:Name="ListBox"
             Grid.Row="1"
             AlternationCount="2"
             ItemsSource="{Binding ScrapContainer.Scraps}"
@@ -47,6 +48,19 @@
             <i:Interaction.Behaviors>
                 <behaviors:ListBoxKeyDownBehavior />
             </i:Interaction.Behaviors>
+
+            <ListBox.InputBindings>
+                <KeyBinding
+                    Key="Return"
+                    Command="{Binding ScrapContainer.OpenScrapCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}, Path=SelectedItem}" />
+
+                <KeyBinding
+                    Key="I"
+                    Command="{Binding ScrapContainer.GetScrapInfoCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}, Path=SelectedItem}"
+                    Modifiers="Control" />
+            </ListBox.InputBindings>
 
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
@@ -91,6 +105,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0" Orientation="Horizontal">
@@ -102,7 +117,12 @@
                             Grid.Column="1"
                             Margin="{Binding IndentCount, Converter={StaticResource IndentingConverter}}"
                             Text="{Binding Title}" />
-                        <TextBlock Grid.Column="2" Text="{Binding Description}" />
+                        <TextBlock
+                            Grid.Column="2"
+                            Width="50"
+                            HorizontalAlignment="Center"
+                            Text="{Binding Kind, StringFormat=[ {0} ]}" />
+                        <TextBlock Grid.Column="3" Text="{Binding Description}" />
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>

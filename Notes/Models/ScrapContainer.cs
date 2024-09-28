@@ -1,6 +1,9 @@
 ﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Abstractions;
+using System.Text.Json;
+using Prism.Commands;
 using Prism.Mvvm;
 
 namespace Notes.Models
@@ -31,6 +34,53 @@ namespace Notes.Models
                 scrapService = value;
             }
         }
+
+        public DelegateCommand<Scrap> OpenScrapCommand => new DelegateCommand<Scrap>((param) =>
+        {
+            if (param.Kind == ScrapKind.FilePath)
+            {
+                return;
+            }
+
+            if (param.Kind == ScrapKind.Text)
+            {
+                var content = param.Text;
+                var tempFilePath = Path.ChangeExtension(Path.GetTempFileName(), "txt");
+                File.WriteAllText(tempFilePath, content);
+
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = tempFilePath,
+                    UseShellExecute = true,
+                });
+
+                return;
+            }
+
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = param.Text,
+                UseShellExecute = true,
+            });
+        });
+
+        public DelegateCommand<Scrap> GetScrapInfoCommand => new DelegateCommand<Scrap>((param) =>
+        {
+            if (param == null)
+            {
+                return;
+            }
+
+            var content = JsonSerializer.Serialize(param, new JsonSerializerOptions { WriteIndented = true, });
+            var tempFilePath = Path.ChangeExtension(Path.GetTempFileName(), "txt");
+            File.WriteAllText(tempFilePath, content);
+
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = tempFilePath,
+                UseShellExecute = true,
+            });
+        });
 
         /// <summary>
         /// 入力された文字から Scrap オブジェクトを生成して、 Scraps に追加します。
