@@ -123,6 +123,7 @@ namespace Notes.Models
             Scraps.Add(scrap);
             var f = new FileInfoWrapper(new FileSystem(), new FileInfo($"{ScrapService.CurrentDirectory}\\{scrap.Id:D4}.json"));
             ScrapService.AddScrap(scrap, f);
+            ReIndex();
         }
 
         private void ReIndex()
