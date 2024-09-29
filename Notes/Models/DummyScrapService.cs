@@ -30,6 +30,7 @@ namespace Notes.Models
             l[3].IndentCount = 3;
             l[4].IndentCount = 4;
             l[5].Text = "testText";
+            l[6].IsMarked = true;
 
             return l;
         }

@@ -60,6 +60,12 @@
                     Command="{Binding ScrapContainer.GetScrapInfoCommand}"
                     CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}, Path=SelectedItem}"
                     Modifiers="Control" />
+
+                <KeyBinding
+                    Key="M"
+                    Command="{Binding ScrapContainer.ToggleMarkCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}, Path=SelectedItem}" />
+
             </ListBox.InputBindings>
 
             <ListBox.ItemContainerStyle>
@@ -109,7 +115,21 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0" Orientation="Horizontal">
-                            <TextBlock Foreground="DimGray" Text="{Binding LineNumber, Converter={StaticResource ZeroPaddingConverter}, ConverterParameter=4}" />
+                            <TextBlock Text="{Binding LineNumber, Converter={StaticResource ZeroPaddingConverter}, ConverterParameter=4}">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsMarked}" Value="True">
+                                                <Setter Property="Foreground" Value="DarkOrange" />
+                                            </DataTrigger>
+
+                                            <DataTrigger Binding="{Binding IsMarked}" Value="False">
+                                                <Setter Property="Foreground" Value="DimGray" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
                             <Border Width="0" Margin="3,0" />
                         </StackPanel>
 

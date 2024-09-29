@@ -82,6 +82,14 @@ namespace Notes.Models
             });
         });
 
+        public DelegateCommand<Scrap> ToggleMarkCommand => new DelegateCommand<Scrap>((param) =>
+        {
+            if (param != null)
+            {
+                param.IsMarked = !param.IsMarked;
+            }
+        });
+
         /// <summary>
         /// 入力された文字から Scrap オブジェクトを生成して、 Scraps に追加します。
         /// </summary>
