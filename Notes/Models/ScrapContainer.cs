@@ -82,27 +82,48 @@ namespace Notes.Models
             });
         });
 
+        public DelegateCommand<Scrap> ToggleMarkCommand => new DelegateCommand<Scrap>((param) =>
+        {
+            if (param != null)
+            {
+                param.IsMarked = !param.IsMarked;
+            }
+        });
+
         /// <summary>
         /// 入力された文字から Scrap オブジェクトを生成して、 Scraps に追加します。
         /// </summary>
         /// <param name="str">ファイルパスであれば、そのファイルの種類に応じたものが、それ以外ならば単純なテキストの Scrap が追加されます。</param>
         public void Add(string str)
         {
-            // Todo : まだ完全に実装していない。
-            var scr = new Scrap() { Title = str, Id = ScrapService.GetMaxId() + 1, };
-            Scraps.Add(scr);
+            var scr = new Scrap() { Title = str, };
+            Add(scr);
 
-            var f = new FileInfoWrapper(new FileSystem(), new FileInfo($"{ScrapService.CurrentDirectory}\\{scr.Id:D4}.json"));
-            ScrapService.AddScrap(scr, f);
+            if (File.Exists(str))
+            {
+                var extension = Path.GetExtension(str).ToLower();
+                scr.Kind = extension switch
+                {
+                    ".mp3" => ScrapKind.Sound,
+                    ".wav" => ScrapKind.Sound,
+                    ".ogg" => ScrapKind.Sound,
+                    ".jpg" => ScrapKind.Image,
+                    ".png" => ScrapKind.Image,
+                    ".bmp" => ScrapKind.Image,
+                    ".psd" => ScrapKind.Image,
+                    ".webp" => ScrapKind.Image,
+                    _ => ScrapKind.FilePath,
+                };
+            }
         }
 
         public void Add(Scrap scrap)
         {
-            // Todo : まだ完全に実装していない。
             scrap.Id = ScrapService.GetMaxId() + 1;
             Scraps.Add(scrap);
             var f = new FileInfoWrapper(new FileSystem(), new FileInfo($"{ScrapService.CurrentDirectory}\\{scrap.Id:D4}.json"));
             ScrapService.AddScrap(scrap, f);
+            ReIndex();
         }
 
         private void ReIndex()
