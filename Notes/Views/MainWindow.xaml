@@ -139,7 +139,7 @@
                             Text="{Binding Title}" />
                         <TextBlock
                             Grid.Column="2"
-                            Width="50"
+                            Width="55"
                             HorizontalAlignment="Center"
                             Text="{Binding Kind, StringFormat=[ {0} ]}" />
                         <TextBlock Grid.Column="3" Text="{Binding Description}" />
